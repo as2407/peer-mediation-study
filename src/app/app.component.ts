@@ -17,6 +17,8 @@ export class AppComponent {
   notToggleStart:boolean = true;
   showChat:boolean = false;
   startChatWindow:boolean =false;
+  correctCount:number = 0;
+  wrongCount:number = 0;
 
   clickInstruction() {
     this.instructionPresent = !this.instructionPresent;

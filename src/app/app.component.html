@@ -4,6 +4,10 @@
       <div class="header-content">
         <h2 class="heading">Welcome to Peer Mediation Role-Play Activity!</h2>
         <div class="button-container-ins">
+          <div class="counters" *ngIf="startChatWindow">
+            <span class="counter-button">Correct: {{ correctCount }}</span>
+            <span class="counter-button">Wrong: {{ wrongCount }}</span>
+          </div>
           <button *ngIf="!toggleSection" (click)="toggleInstructions()" class="btn btn-light btn-sm instruction-button">Show Instructions</button>
           <button *ngIf="toggleSection" (click)="toggleInstructions()" class="btn btn-light btn-sm instruction-button">Collapse Instructions</button>
         </div>

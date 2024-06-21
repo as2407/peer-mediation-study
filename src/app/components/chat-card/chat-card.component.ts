@@ -18,57 +18,56 @@ export class ChatCardComponent implements OnInit{
     conversation:''
   }
   chatHistory: Chat[] = [];
-  currentIndex = 0;
-  // showInstructionCard = false;
-  // question: string = '';
+  currentIndex:number = 0;
+
 
   constructor(private http: HttpService) {}
 
   ngOnInit(): void {
     this.http.getChat().subscribe(data => {
       this.instructions = data;
-      console.log('Instructions fetched:', this.instructions);
+      // console.log('Instructions fetched:', this.instructions);
     });
   }
   // getting the next chat
-  getNext() {
-    this.addHistory();
+  getNext(response?: string):void {
+    this.addHistory(response || null);
     if (this.instructions.length > this.currentIndex) {
       this.currInstruction = this.instructions[this.currentIndex];
     }
     this.currentIndex++;
   }
 
-  addHistory(): void {
-    let response: string | null;
-    let css:string | null;
+  addHistory(response: string | null):void {
+    let message: string | null = '';
+    let css: string | null;
+
     // for mediator
     if (this.isConversation(this.currInstruction.conversation)) {
-      response = this.currInstruction.conversation.content || null;
+      message = response || this.currInstruction.conversation.content || null;
+    } else {
+      // for blossoms
+      message = this.currInstruction.conversation || null;
     }
-    else {
-      // for blossom
-      response = this.currInstruction.conversation || null;
-    }
-    // assigning the cssClass
+
     if (this.currInstruction.actor === 'Mediator') {
       css = 'mediator-class';
-    }
-    else if (this.currInstruction.actor === 'Jacob') {
+    } else if (this.currInstruction.actor === 'Jacob') {
       css = 'jacob-class';
-    }
-    else {
+    } else {
       css = 'caleb-class';
     }
+
     this.chatHistory.push({
       person: this.currInstruction.actor,
-      response: response,
-      cssClass:css
+      response: message,
+      cssClass: css
     });
-    console.log('Chat History:', this.chatHistory);
 
-    setTimeout(() => {
-      const chatArea = document.querySelector('.chat-area');
+    // console.log('Chat History:', this.chatHistory);
+
+    setTimeout(():void => {
+      const chatArea: Element|null = document.querySelector('.chat-area');
       if (chatArea) {
         chatArea.scrollTop = chatArea.scrollHeight;
       }

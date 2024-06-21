@@ -1,6 +1,6 @@
 <div class = "chat-area">
   <div *ngFor="let chat of chatHistory" class="chat-bubble-container" [ngClass]="chat.cssClass">
-    <div class="chat-bubble" [ngClass]="chat.cssClass" *ngIf="chat.person !== ''">{{ chat.person }}: {{ chat.response }}</div>
+    <div class="chat-bubble" [ngClass]="chat.cssClass" *ngIf="chat.person !== ''"><b>{{ chat.person }}</b>: {{ chat.response }}</div>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
   <app-instruction-card
     *ngIf="currInstruction.actor === 'Mediator'"
     [instruction]="currInstruction"
-    (onComplete)="getNext()">
+    (onComplete)="getNext($event)">
   </app-instruction-card>
 </div>
 

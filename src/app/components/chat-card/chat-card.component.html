@@ -1,0 +1,26 @@
+<div class = "chat-area">
+  <div *ngFor="let chat of chatHistory" class="chat-bubble-container" [ngClass]="chat.cssClass">
+    <div class="chat-bubble" [ngClass]="chat.cssClass" *ngIf="chat.person !== ''">{{ chat.person }}: {{ chat.response }}</div>
+  </div>
+</div>
+
+
+<button *ngIf="currInstruction.actor !== 'Mediator'" (click)="getNext()">Next Chat</button>
+<div class="inst-card-1" *ngIf="currInstruction.actor !== 'Mediator'">
+  <div class=" hazy-stripes" >
+    <h2 class ="hazy-stripes-text">Wait for your turn</h2>
+  </div>
+</div>
+
+<div class = "inst-card-2" *ngIf="currInstruction.actor === 'Mediator'">
+  <app-instruction-card
+    *ngIf="currInstruction.actor === 'Mediator'"
+    [instruction]="currInstruction"
+    (onComplete)="getNext()">
+  </app-instruction-card>
+</div>
+
+
+
+
+

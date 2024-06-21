@@ -1,0 +1,45 @@
+<div *ngIf="isConversation(instruction.conversation)">
+  <div class="centered-card">
+    <div *ngIf="instruction.conversation.inputType === 'text'">
+      <div class="content">{{ instruction.conversation.content }}</div>
+      <form #textInputForm="ngForm" (ngSubmit)="submitForm(textInputForm)">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="textInput"
+            placeholder="Type your response..."
+            [(ngModel)]="textInput"
+            required>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary button-container"
+          [disabled]="textInputForm.invalid">
+          Submit
+        </button>
+      </form>
+    </div>
+    <div *ngIf="instruction.conversation.inputType === 'radio'">
+      <p class="content">{{ instruction.conversation.content }}</p>
+      <form #radioForm="ngForm" (ngSubmit)="submitForm(radioForm)">
+        <div class="form-group button-group">
+          <button
+            *ngFor="let option of instruction.conversation.options"
+            type="button"
+            class="btn option-button"
+            [ngClass]="{'btn-warning': selectedOption === option, 'btn-secondary': selectedOption !== option}"
+            (click)="selectOption(option)">
+            {{ option }}
+          </button>
+        </div>
+        <button [disabled]="!selectedOption" class="btn btn-primary button-container" type="submit">Submit</button>
+      </form>
+    </div>
+    <div *ngIf="instruction.conversation.inputType === ''">
+      <p class="content">{{ instruction.conversation.content }}</p>
+      <button class="btn btn-primary button-container" (click)="nextIns()">Submit</button>
+    </div>
+  </div>
+</div>
+

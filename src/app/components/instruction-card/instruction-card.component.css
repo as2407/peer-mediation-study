@@ -100,3 +100,30 @@ input[type="text"] {
 .btn:hover {
   opacity: 0.9;
 }
+
+
+.custom-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.custom-btn.recording {
+  background-color: #dc3545;
+}
+
+.custom-btn.idle {
+  background-color: #6c757d;
+}
+
+.custom-btn:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+audio {
+  margin: 10px 0;
+}

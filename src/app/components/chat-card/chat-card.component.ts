@@ -1,7 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Instruction, Conversation} from "../../DTO/instruction";
 import {HttpService} from "../../services/http.service";
 import {Chat} from "../../DTO/chat";
+import {response} from "express";
+import {Element} from "@angular/compiler";
 
 
 @Component({
@@ -9,7 +11,7 @@ import {Chat} from "../../DTO/chat";
   templateUrl: './chat-card.component.html',
   styleUrl: './chat-card.component.css'
 })
-export class ChatCardComponent implements OnInit{
+export class ChatCardComponent implements OnInit, AfterViewChecked{
 
 
   instructions: Instruction[] = [];
@@ -19,6 +21,7 @@ export class ChatCardComponent implements OnInit{
   }
   chatHistory: Chat[] = [];
   currentIndex:number = 0;
+  endChat:boolean = false;
 
 
   constructor(private http: HttpService) {}
@@ -36,6 +39,10 @@ export class ChatCardComponent implements OnInit{
       this.currInstruction = this.instructions[this.currentIndex];
     }
     this.currentIndex++;
+    if (this.currentIndex == this.instructions.length) {
+      this.endChat = true;
+      return;
+    }
   }
 
   addHistory(response: string | null):void {
@@ -63,21 +70,25 @@ export class ChatCardComponent implements OnInit{
       response: message,
       cssClass: css
     });
-
-    // console.log('Chat History:', this.chatHistory);
-
-    setTimeout(():void => {
-      const chatArea: Element|null = document.querySelector('.chat-area');
-      if (chatArea) {
-        chatArea.scrollTop = chatArea.scrollHeight;
-      }
-    }, 0);
   }
 
   // checking if the chat belongs to mediator or blossom by comparing their conversation type
   isConversation(conversation: string | Conversation): conversation is Conversation {
     return typeof conversation === 'object';
   }
+
+  // Scroll to the end
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    const chatArea = document.querySelector('.chat-area') as HTMLElement | null;
+    if (chatArea) {
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+  }
+
 
 
 }

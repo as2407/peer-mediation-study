@@ -1,8 +1,8 @@
 <div *ngIf="isConversation(instruction.conversation)">
   <div class="centered-card">
     <div *ngIf="instruction.conversation.inputType === 'text'">
-      <div class="content">{{ instruction.conversation.content }}</div>
-      <form #textInputForm="ngForm" (ngSubmit)="submitForm(textInputForm)">
+      <div *ngIf="!showAudio" class="content">{{ instruction.conversation.content }}</div>
+      <form *ngIf="!showAudio" #textInputForm="ngForm" (ngSubmit)="submitForm(textInputForm)">
         <div class="form-group">
           <input
             type="text"
@@ -19,10 +19,33 @@
           Submit
         </button>
       </form>
+          <div *ngIf="showAudio">
+            <p class="content">{{ currentAnswer }}</p>
+            <div class="alert alert-success">
+              Start Recording!
+            </div>
+            <button
+              class="custom-btn button-container"
+              [ngClass]="isRecording ? 'recording' : 'idle'"
+              (click)="toggleRecording()">
+              {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
+            </button>
+
+            <audio *ngIf="audioUrl" controls [src]="audioUrl"></audio>
+
+            <button
+              class="btn btn-success"
+              [disabled]="isRecording || !audioUrl"
+              (click)="getNextChat()">
+              Next
+            </button>
+
+
+          </div>
     </div>
     <div *ngIf="instruction.conversation.inputType === 'radio'">
-      <p class="content">{{ instruction.conversation.content }}</p>
-      <form #radioForm="ngForm" (ngSubmit)="submitForm(radioForm)">
+      <p *ngIf="!showAudio" class="content">{{ instruction.conversation.content }}</p>
+      <form *ngIf="!showAudio" #radioForm="ngForm" (ngSubmit)="submitForm(radioForm)">
         <div class="form-group button-group">
           <button
             *ngFor="let option of instruction.conversation.options"
@@ -33,10 +56,6 @@
             {{ option }}
           </button>
         </div>
-        <div *ngIf="correctAnswer" class="alert alert-success">
-          Congrats!
-          <button (click)="getNextChat()" class="btn btn-primary button-container">Next</button>
-        </div>
         <div *ngIf="showTryAgainDiv" class="alert alert-danger">
           Try Again!
         </div>
@@ -46,10 +65,48 @@
         </div>
         <button [disabled]="!selectedOption || correctAnswer" class="btn btn-primary button-container" type="submit">Submit</button>
       </form>
+      <div *ngIf="showAudio">
+        <p class="content">{{ currentAnswer }}</p>
+        <div class="alert alert-success">
+                    Congrats! Start Recording
+        </div>
+        <button
+          class="custom-btn button-container"
+          [ngClass]="isRecording ? 'recording' : 'idle'"
+          (click)="toggleRecording()">
+          {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
+        </button>
+
+        <audio *ngIf="audioUrl" controls [src]="audioUrl"></audio>
+
+        <button
+          class="btn btn-success"
+          [disabled]="isRecording || !audioUrl"
+          (click)="getNextChat()">
+          Next
+        </button>
+      </div>
     </div>
     <div *ngIf="instruction.conversation.inputType === ''">
       <p class="content">{{ instruction.conversation.content }}</p>
-      <button class="btn btn-primary button-container" (click)="nextIns()">Next</button>
+      <div class="alert alert-success">
+        Start Recording
+      </div>
+      <button
+        class="custom-btn button-container"
+        [ngClass]="isRecording ? 'recording' : 'idle'"
+        (click)="toggleRecording()">
+        {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
+      </button>
+
+      <audio *ngIf="audioUrl" controls [src]="audioUrl"></audio>
+
+      <button
+        class="btn btn-success"
+        [disabled]="isRecording || !audioUrl"
+        (click)="nextIns()">
+        Next
+      </button>
     </div>
   </div>
 </div>

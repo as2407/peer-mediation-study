@@ -20,6 +20,15 @@ export class AppComponent {
   correctCount:number = 0;
   wrongCount:number = 0;
 
+
+  handleCounter(count: number) {
+    if (count === 1) {
+      this.correctCount++;
+    } else if (count === 2) {
+      this.wrongCount++;
+    }
+  }
+
   clickInstruction() {
     this.instructionPresent = !this.instructionPresent;
   }

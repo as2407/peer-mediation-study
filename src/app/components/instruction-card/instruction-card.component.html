@@ -1,4 +1,4 @@
-<div *ngIf="isConversation(instruction.conversation)">
+<div  *ngIf="isConversation(instruction.conversation)">
   <div class="centered-card">
     <div *ngIf="instruction.conversation.inputType === 'text'">
       <div *ngIf="!showAudio" class="content">{{ instruction.conversation.content }}</div>

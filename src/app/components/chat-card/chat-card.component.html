@@ -19,7 +19,8 @@
   <app-instruction-card
     *ngIf="currInstruction.actor === 'Mediator'"
     [instruction]="currInstruction"
-    (onComplete)="getNext($event)">
+    (onComplete)="getNext($event)"
+    (incrementCorrectOrWrong)="handleAnswer($event)" >
   </app-instruction-card>
 </div>
 

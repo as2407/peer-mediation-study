@@ -13,6 +13,8 @@ import {Element} from "@angular/compiler";
 })
 export class ChatCardComponent implements OnInit, AfterViewChecked{
 
+  @Output() answerCounter :EventEmitter<number> = new EventEmitter<number>();
+
 
   instructions: Instruction[] = [];
   currInstruction: Instruction = {
@@ -24,7 +26,14 @@ export class ChatCardComponent implements OnInit, AfterViewChecked{
   endChat:boolean = false;
 
 
+
   constructor(private http: HttpService) {}
+
+
+  // passing the right and wrong counter
+  handleAnswer(count: number) {
+    this.answerCounter.emit(count)
+  }
 
   ngOnInit(): void {
     this.http.getChat().subscribe(data => {

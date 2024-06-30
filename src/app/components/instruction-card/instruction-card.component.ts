@@ -1,4 +1,11 @@
-import {Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import {Conversation, Instruction} from "../../DTO/instruction";
 import {NgForm} from "@angular/forms";
 
@@ -9,6 +16,8 @@ import {NgForm} from "@angular/forms";
   styleUrl: './instruction-card.component.css'
 })
 export class InstructionCardComponent implements OnChanges {
+
+
   textInput: string = '';
   selectedOption: string | null = null;
 
@@ -29,8 +38,10 @@ export class InstructionCardComponent implements OnChanges {
     }
   };
 
-  @Output() onComplete = new EventEmitter<string>();
+  @Output() onComplete:EventEmitter<string> = new EventEmitter<string>();
+  @Output() incrementCorrectOrWrong:EventEmitter<number> = new EventEmitter<number>();
 
+  emitValue:number = 0;
   mediaRecorder: MediaRecorder | null = null;
   audioChunks: Blob[] = [];
   audioUrl: string | null = null;
@@ -40,10 +51,9 @@ export class InstructionCardComponent implements OnChanges {
 
   isConversation(conversation: string | Conversation): conversation is Conversation {
     return typeof conversation === 'object';
-
   }
+
   // todo:
-  //  implement the count of right and wrong
   //  sync of the audio - no next button - Message Queue (call to run the scripts)
   //  update the json file (script) as well
   //  IOT device
@@ -52,11 +62,11 @@ export class InstructionCardComponent implements OnChanges {
   // a button to record the audio and end it
   // fix the 'try again' bug
   // end the chat properly
+  // implement the count of right and wrong
 
 
   submitForm(submitForm: NgForm) {
     let response: string = '';
-
     if (this.isConversation(this.instruction.conversation)) {
       if (this.instruction.conversation.inputType === 'text') {
         response = this.textInput;
@@ -65,32 +75,27 @@ export class InstructionCardComponent implements OnChanges {
         }
         this.currentAnswer = this.answer;
         this.showAudio = true;
-
-
-        // this.onComplete.emit(this.answer);
-
       }
-
       else {
         if (this.instruction.conversation.inputType === 'radio') {
           response = this.selectedOption || '';
         }
         this.attempts++;
         if (this.isConversation(this.instruction.conversation) && response === this.instruction.conversation.correctAnswer) {
-
           if (this.isConversation(this.instruction.conversation) && this.instruction.conversation.content) {
             this.answer = this.instruction.conversation.content.replace('___', response);
+            this.emitValue = 1;
             this.currentAnswer = this.answer;
             this.showAudio = true;
           }
           this.correctAnswer = true;
-
         } else if (this.attempts === 3) {
           this.showCorrectAnswer = true;
           if (this.isConversation(this.instruction.conversation) && this.instruction.conversation.content) {
             const val: string = this.instruction.conversation.correctAnswer || '';
             this.answer = this.instruction.conversation.content.replace('___', val);
             this.currentAnswer = this.answer;
+            this.emitValue = 2;
             this.showAudio = true;
             this.showTryAgainDiv = false;
           }
@@ -100,28 +105,29 @@ export class InstructionCardComponent implements OnChanges {
         } else {
           this.showTryAgainDiv = true;
         }
-
       }
-
     }
-
   }
 
   getNextChat() {
     this.resetForm();
+    // 1 -> correct answer, 2 -> wrong answer
+    if (this.emitValue === 2) {
+      this.incrementCorrectOrWrong.emit(2);
+    }
+    if (this.emitValue === 1) {
+      this.incrementCorrectOrWrong.emit(1);
+    }
     this.onComplete.emit(this.answer);
     this.attempts = 0;
     this.showTryAgainDiv = false;
     this.correctAnswer = false;
-
   }
 
   selectOption(option: string): void {
     console.log(this.showTryAgainDiv)
     this.showTryAgainDiv = false;
     this.selectedOption = option;
-
-     // Reset the "try again" message when a new option is selected
   }
 
   nextIns() {
@@ -129,10 +135,6 @@ export class InstructionCardComponent implements OnChanges {
     if (this.isConversation(this.instruction.conversation)) {
       response = this.instruction.conversation.content;
     }
-    // changed
-
-    // this.currentAnswer = this.answer;
-    // this.showAudio = true;
     this.onComplete.emit(response);
     this.resetForm();
   }
@@ -141,6 +143,7 @@ export class InstructionCardComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     // console.log(this.instruction);
   }
+
 
   resetForm(): void {
     this.showTryAgainDiv = false;
@@ -165,7 +168,6 @@ export class InstructionCardComponent implements OnChanges {
         this.mediaRecorder.start();
         this.isRecording = true;
         this.audioChunks = [];
-
         this.mediaRecorder.addEventListener("dataavailable", event => {
           this.audioChunks.push(event.data);
         });

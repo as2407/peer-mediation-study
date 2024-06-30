@@ -2,8 +2,6 @@ import {AfterViewChecked, Component, EventEmitter, OnChanges, OnInit, Output, Si
 import {Instruction, Conversation} from "../../DTO/instruction";
 import {HttpService} from "../../services/http.service";
 import {Chat} from "../../DTO/chat";
-import {response} from "express";
-import {Element} from "@angular/compiler";
 
 
 @Component({

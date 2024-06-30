@@ -59,16 +59,22 @@
         <div *ngIf="showTryAgainDiv" class="alert alert-danger">
           Try Again!
         </div>
-        <div *ngIf="showCorrectAnswer" class="alert alert-info">
-          <p>Correct answer: {{instruction.conversation.correctAnswer}}</p>
-          <button (click)="getNextChat()" class="btn btn-primary button-container">Next</button>
-        </div>
+<!--        <div *ngIf="showCorrectAnswer" class="alert alert-info">-->
+<!--          <p>Correct answer: {{instruction.conversation.correctAnswer}}</p>-->
+<!--          <button (click)="getNextChat()" class="btn btn-primary button-container">Next</button>-->
+<!--        </div>-->
         <button [disabled]="!selectedOption || correctAnswer" class="btn btn-primary button-container" type="submit">Submit</button>
       </form>
       <div *ngIf="showAudio">
+        <div *ngIf="showCorrectAnswer" class="alert alert-info">
+          <p>No worries, All 3 chances are Done!<br>
+            Correct answer: {{instruction.conversation.correctAnswer}}<br>
+            Start Recording
+          </p>
+        </div>
         <p class="content">{{ currentAnswer }}</p>
-        <div class="alert alert-success">
-                    Congrats! Start Recording
+        <div *ngIf="!showCorrectAnswer" class="alert alert-success">
+          Congrats! Start Recording
         </div>
         <button
           class="custom-btn button-container"

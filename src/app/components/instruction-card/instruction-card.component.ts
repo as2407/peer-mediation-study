@@ -55,7 +55,6 @@ export class InstructionCardComponent implements OnChanges {
 
   // todo:
   //  sync of the audio - no next button - Message Queue (call to run the scripts)
-  //  update the json file (script) as well
   //  IOT device
   //  push the code in new github
   // scroll to the end
@@ -63,6 +62,7 @@ export class InstructionCardComponent implements OnChanges {
   // fix the 'try again' bug
   // end the chat properly
   // implement the count of right and wrong
+  // update the json file (script) as well
 
 
   submitForm(submitForm: NgForm) {
@@ -76,10 +76,10 @@ export class InstructionCardComponent implements OnChanges {
         this.currentAnswer = this.answer;
         this.showAudio = true;
       }
-      else {
-        if (this.instruction.conversation.inputType === 'radio') {
+      else if (this.instruction.conversation.inputType === 'radio') {
+        // if  {
           response = this.selectedOption || '';
-        }
+        // }
         this.attempts++;
         if (this.isConversation(this.instruction.conversation) && response === this.instruction.conversation.correctAnswer) {
           if (this.isConversation(this.instruction.conversation) && this.instruction.conversation.content) {
@@ -87,6 +87,7 @@ export class InstructionCardComponent implements OnChanges {
             this.emitValue = 1;
             this.currentAnswer = this.answer;
             this.showAudio = true;
+            this.correctAnswer = false;
           }
           this.correctAnswer = true;
         } else if (this.attempts === 3) {
@@ -94,8 +95,8 @@ export class InstructionCardComponent implements OnChanges {
           if (this.isConversation(this.instruction.conversation) && this.instruction.conversation.content) {
             const val: string = this.instruction.conversation.correctAnswer || '';
             this.answer = this.instruction.conversation.content.replace('___', val);
-            this.currentAnswer = this.answer;
             this.emitValue = 2;
+            this.currentAnswer = this.answer;
             this.showAudio = true;
             this.showTryAgainDiv = false;
           }

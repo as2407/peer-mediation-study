@@ -1,30 +1,52 @@
-<div class = "chat-area">
+<!--<div class = "chat-area">-->
+<!--  <div *ngFor="let chat of chatHistory" class="chat-bubble-container" [ngClass]="chat.cssClass">-->
+<!--    <div class="chat-bubble" [ngClass]="chat.cssClass" *ngIf="chat.person !== ''"><b>{{ chat.person }}</b>: {{ chat.response }}</div>-->
+<!--  </div>-->
+<!--  <div *ngIf="endChat"> Thank You for Playing!</div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;<audio *ngIf="currInstruction.audio" controls [src]="currInstruction.audio"></audio>&ndash;&gt;-->
+
+<!--<button *ngIf="currInstruction.actor !== 'Mediator' && !endChat" (click)="getNext()">Next Chat</button>-->
+<!--<div class="inst-card-1" *ngIf="currInstruction.actor !== 'Mediator'">-->
+<!--  <div class=" hazy-stripes" >-->
+<!--    <h2 class ="hazy-stripes-text">Wait for your turn</h2>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class = "inst-card-2" *ngIf="currInstruction.actor === 'Mediator'">-->
+<!--  <app-instruction-card-->
+<!--    *ngIf="currInstruction.actor === 'Mediator'"-->
+<!--    [instruction]="currInstruction"-->
+<!--    (onComplete)="getNext($event)"-->
+<!--    (incrementCorrectOrWrong)="handleAnswer($event)" >-->
+<!--  </app-instruction-card>-->
+<!--</div>-->
+
+
+
+
+
+<div class="chat-area">
   <div *ngFor="let chat of chatHistory" class="chat-bubble-container" [ngClass]="chat.cssClass">
     <div class="chat-bubble" [ngClass]="chat.cssClass" *ngIf="chat.person !== ''"><b>{{ chat.person }}</b>: {{ chat.response }}</div>
   </div>
   <div *ngIf="endChat"> Thank You for Playing!</div>
 </div>
 
-
-
-
 <button *ngIf="currInstruction.actor !== 'Mediator' && !endChat" (click)="getNext()">Next Chat</button>
 <div class="inst-card-1" *ngIf="currInstruction.actor !== 'Mediator'">
-  <div class=" hazy-stripes" >
-    <h2 class ="hazy-stripes-text">Wait for your turn</h2>
+  <div class="hazy-stripes">
+    <h2 class="hazy-stripes-text">Wait for your turn</h2>
   </div>
 </div>
 
-<div class = "inst-card-2" *ngIf="currInstruction.actor === 'Mediator'">
+<div class="inst-card-2" *ngIf="currInstruction.actor === 'Mediator'">
   <app-instruction-card
     *ngIf="currInstruction.actor === 'Mediator'"
     [instruction]="currInstruction"
     (onComplete)="getNext($event)"
-    (incrementCorrectOrWrong)="handleAnswer($event)" >
+    (incrementCorrectOrWrong)="handleAnswer($event)">
   </app-instruction-card>
 </div>
-
-
-
-
-

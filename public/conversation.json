@@ -5,7 +5,8 @@
       "content": "Hello everyone, welcome to your mediation. My name is ___. I am glad you are here to mediate and I look forward to helping you work through your conflict today.",
       "inputType": "text",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Mediator",
@@ -13,15 +14,18 @@
       "content": "First, I would like everyone in the room to please introduce themselves. (wait for blossom)",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "Hi I am Jacob"
+    "conversation": "Hi I am Jacob",
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "Hello, I’m Caleb"
+    "conversation": "Hello, I’m Caleb",
+    "audio": ""
   },
   {
     "actor": "Mediator",
@@ -34,7 +38,8 @@
         "funny"
       ],
       "correctAnswer": "neutral"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Mediator",
@@ -47,7 +52,8 @@
         "wrestle"
       ],
       "correctAnswer": "interrupt"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Mediator",
@@ -55,15 +61,18 @@
       "content": "We also ask that you take the time to listen and think about the other party's point of view in order to find solutions. Now to begin, we would like to ask each of you to tell us what brought you to mediation today and to share a little bit about your side of the story. Jacob, let's have you start if you're okay with that.",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "Sure, basically last week I found out that the person who was supposed to be my friend started playing with Ruby, who is always really mean to me. I was not cool with that. I mean, who plays with their friend’s bully?"
+    "conversation": "Sure, basically last week I found out that the person who was supposed to be my friend started playing with Ruby, who is always really mean to me. I was not cool with that. I mean, who plays with their friend’s bully?",
+    "audio": "peer-mediation-script-audio-files/Jacob_1.wav"
   },
   {
     "actor": "Caleb",
-    "conversation": "Bro, you were not–"
+    "conversation": "Bro, you were not–",
+    "audio": "peer-mediation-script-audio-files/Caleb_1.wav"
   },
   {
     "actor": "Mediator",
@@ -71,23 +80,18 @@
       "content": "Caleb, we'll get to your story in a little bit but before that, let's let Jacob have a chance to share what he would like without getting interrupted.",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "*Nods*"
-  },
-  {
-    "actor": "Mediator",
-    "conversation": {
-      "content": "*Gestures for Jacob to continue*",
-      "inputType": "",
-      "options": []
-    }
+    "conversation": "*Nods*",
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "I am really mad because we were friends or I thought we were friends, until he started hanging out with Ruby. I've been seeing the two of them around and I can't help but say something."
+    "conversation": "I am really mad because we were friends or I thought we were friends, until he started hanging out with Ruby. I've been seeing the two of them around and I can't help but say something.",
+    "audio": "peer-mediation-script-audio-files/Jacob_2.wav"
   },
   {
     "actor": "Mediator",
@@ -100,11 +104,13 @@
         "spreading false rumors about Caleb"
       ],
       "correctAnswer": "making comments towards Caleb about how you were feeling"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "Yeah, pretty much. Then on Friday, I said something to Caleb during lunch and started walking away. All of a sudden he shoves me from behind. I was not going to take it so I pushed him back, but yeah, we got sent to the office real quick."
+    "conversation": "Yeah, pretty much. Then on Friday, I said something to Caleb during lunch and started walking away. All of a sudden he shoves me from behind. I was not going to take it so I pushed him back, but yeah, we got sent to the office real quick.",
+    "audio": "peer-mediation-script-audio-files/Jacob_3.wav"
   },
   {
     "actor": "Mediator",
@@ -117,11 +123,13 @@
         "now like to end our discussion"
       ],
       "correctAnswer": "now like to hear how things went down on your end"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "Okay. Basically, I've wanted to play with Ruby for a while now. I know it's not cool since Ruby is pretty mean to Jacob, but Ruby is nice to me, and I don't know, she's just cool. We both like to play soccer. One day, Ruby taught me this really cool trick to kick the ball far, and we started playing more afterwards. I was going to tell Jacob! I was just not trying to do it right away because I knew he'd be upset and I didn't want to deal with it. Anyway, this past week, Jacob has been saying stuff right when I pass him in the hallway. I get it. He's mad. But also, it was just getting old– he should have just said something to my face. Then when we were at lunch the other day, when I saw him, he said something to my face, and I kinda snapped. I didn't hit him... I just grabbed his shoulder because I wanted to talk or whatever. He looked mad and he shoved me. Before I could get a hit in, the teacher yelled at us and sent us down here. So, yeah, that’s what happened."
+    "conversation": "Okay. Basically, I've wanted to play with Ruby for a while now. I know it's not cool since Ruby is pretty mean to Jacob, but Ruby is nice to me, and I don't know, she's just cool. We both like to play soccer. One day, Ruby taught me this really cool trick to kick the ball far, and we started playing more afterwards. I was going to tell Jacob! I was just not trying to do it right away because I knew he'd be upset and I didn't want to deal with it. Anyway, this past week, Jacob has been saying stuff right when I pass him in the hallway. I get it. He's mad. But also, it was just getting old– he should have just said something to my face. Then when we were at lunch the other day, when I saw him, he said something to my face, and I kinda snapped. I didn't hit him... I just grabbed his shoulder because I wanted to talk or whatever. He looked mad and he shoved me. Before I could get a hit in, the teacher yelled at us and sent us down here. So, yeah, that’s what happened.",
+    "audio": "peer-mediation-script-audio-files/Caleb_2.wav"
   },
   {
     "actor": "Mediator",
@@ -134,11 +142,13 @@
         "boring"
       ],
       "correctAnswer": "pretty frustrating and hard to deal with"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "Yeah."
+    "conversation": "Yeah.",
+    "audio": "peer-mediation-script-audio-files/Caleb_3.wav"
   },
   {
     "actor": "Mediator",
@@ -146,15 +156,18 @@
       "content": "We appreciate that you both have been so willing to share. Now, we’re going to ask a couple of questions to help us figure out what both of you would like to get out of this conversation. Does this work for both of you?",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "Yeah, whatever."
+    "conversation": "Yeah, whatever.",
+    "audio": "peer-mediation-script-audio-files/Jacob_4.wav"
   },
   {
     "actor": "Caleb",
-    "conversation": "Yep."
+    "conversation": "Yep.",
+    "audio": "peer-mediation-script-audio-files/Caleb_4.wav"
   },
   {
     "actor": "Mediator",
@@ -167,15 +180,18 @@
         "punishment for Jacob"
       ],
       "correctAnswer": "win-win situation"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "I don’t know. I just think it was really messed up what Caleb did. We were friends! Friends don’t go behind each others’ backs! And he doesn’t even seem to care that much, right? He did not even look like he felt bad for what he did to me!"
+    "conversation": "I don’t know. I just think it was really messed up what Caleb did. We were friends! Friends don’t go behind each others’ backs! And he doesn’t even seem to care that much, right? He did not even look like he felt bad for what he did to me!",
+    "audio": "peer-mediation-script-audio-files/Jacob_5.wav"
   },
   {
     "actor": "Caleb",
-    "conversation": "Hey, I did—"
+    "conversation": "Hey, I did—",
+    "audio": "peer-mediation-script-audio-files/Caleb_5.wav"
   },
   {
     "actor": "Mediator",
@@ -188,11 +204,13 @@
         "both of you to laugh"
       ],
       "correctAnswer": "both of you not to interrupt"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "Yeah, sorry."
+    "conversation": "Yeah, sorry.",
+    "audio": "peer-mediation-script-audio-files/Caleb_6.wav"
   },
   {
     "actor": "Mediator",
@@ -205,11 +223,13 @@
         "he played with Ruby"
       ],
       "correctAnswer": "he didn’t talk to you about it"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "Yeah. I really just wanted him to talk to me because honestly, it was more about the friendship than about Ruby."
+    "conversation": "Yeah. I really just wanted him to talk to me because honestly, it was more about the friendship than about Ruby.",
+    "audio": "peer-mediation-script-audio-files/Jacob_6.wav"
   },
   {
     "actor": "Mediator",
@@ -217,11 +237,13 @@
       "content": "*Looking at Jacob* How would you feel if you got an apology from Caleb?",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "I think I could just move on then."
+    "conversation": "I think I could just move on then.",
+    "audio": "peer-mediation-script-audio-files/Jacob_7.wav"
   },
   {
     "actor": "Mediator",
@@ -229,15 +251,18 @@
       "content": "Caleb, what do you think you need in this situation?",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "Finally! I just want him to leave us alone. I get that I could have told him earlier but he really needs to just chill."
+    "conversation": "Finally! I just want him to leave us alone. I get that I could have told him earlier but he really needs to just chill.",
+    "audio": "peer-mediation-script-audio-files/Caleb_7.wav"
   },
   {
     "actor": "Jacob",
-    "conversation": "Chill?!"
+    "conversation": "Chill?!",
+    "audio": "peer-mediation-script-audio-files/Jacob_8.wav"
   },
   {
     "actor": "Mediator",
@@ -245,11 +270,13 @@
       "content": "Hold on. Let’s make sure to hear Caleb out fully.",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "*Pausing for a moment* Yeah, I just want to move on."
+    "conversation": "*Pausing for a moment* Yeah, I just want to move on.",
+    "audio": "peer-mediation-script-audio-files/Caleb_8.wav"
   },
   {
     "actor": "Mediator",
@@ -257,11 +284,13 @@
       "content": "What does that exactly look like for you, Caleb?",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "I guess I don’t think we should hang out anymore. Seems like the damage has been done."
+    "conversation": "I guess I don’t think we should hang out anymore. Seems like the damage has been done.",
+    "audio": "peer-mediation-script-audio-files/Caleb_9.wav"
   },
   {
     "actor": "Mediator",
@@ -269,11 +298,13 @@
       "content": "I appreciate you sharing honestly. Jacob, how do you feel about the possibility of not staying friends after this mediation is over?",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "I don’t know. I don’t like it, but also, I get it and kinda feel the same way at this point. I just want him to apologize to me."
+    "conversation": "I don’t know. I don’t like it, but also, I get it and kinda feel the same way at this point. I just want him to apologize to me.",
+    "audio": "peer-mediation-script-audio-files/Jacob_9.wav"
   },
   {
     "actor": "Mediator",
@@ -286,7 +317,8 @@
         "for Ruby to scolded by the teacher for being mean to Jacob"
       ],
       "correctAnswer": "an apology from Caleb about not talking to him earlier"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Mediator",
@@ -299,15 +331,18 @@
         "play soccer together"
       ],
       "correctAnswer": "move on and no longer be friends"
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Caleb",
-    "conversation": "I’m good with that."
+    "conversation": "I’m good with that.",
+    "audio": "peer-mediation-script-audio-files/Caleb_10.wav"
   },
   {
     "actor": "Jacob",
-    "conversation": "Okay with me."
+    "conversation": "Okay with me.",
+    "audio": "peer-mediation-script-audio-files/Jacob_10.wav"
   },
   {
     "actor": "Mediator",
@@ -315,14 +350,17 @@
       "content": "Great, it looks like we have an agreement. Thank you so much for participating in today’s mediation and we hope that this was helpful to both of you. If you ever want another mediation, please let us know and we’d be happy to help! But hopefully not another mediation between the two of you haha",
       "inputType": "",
       "options": []
-    }
+    },
+    "audio": ""
   },
   {
     "actor": "Jacob",
-    "conversation": "Hahah, okay thanks."
+    "conversation": "Hahah, okay thanks.",
+    "audio": "peer-mediation-script-audio-files/Jacob_11.wav"
   },
   {
     "actor": "Caleb",
-    "conversation": "Yeah, see you around!"
+    "conversation": "Yeah, see you around!",
+    "audio": "peer-mediation-script-audio-files/Caleb_11.wav"
   }
 ]

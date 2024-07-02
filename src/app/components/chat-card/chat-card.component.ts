@@ -1,7 +1,18 @@
-import {AfterViewChecked, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {Instruction, Conversation} from "../../DTO/instruction";
 import {HttpService} from "../../services/http.service";
 import {Chat} from "../../DTO/chat";
+import {count} from "rxjs";
+import {response} from "express";
 
 
 @Component({
@@ -9,7 +20,7 @@ import {Chat} from "../../DTO/chat";
   templateUrl: './chat-card.component.html',
   styleUrl: './chat-card.component.css'
 })
-export class ChatCardComponent implements OnInit, AfterViewChecked{
+export class ChatCardComponent implements OnInit, AfterViewChecked, OnChanges {
 
   @Output() answerCounter :EventEmitter<number> = new EventEmitter<number>();
 
@@ -17,15 +28,17 @@ export class ChatCardComponent implements OnInit, AfterViewChecked{
   instructions: Instruction[] = [];
   currInstruction: Instruction = {
     actor:'',
-    conversation:''
+    conversation:'',
+    audio: ''
   }
   chatHistory: Chat[] = [];
   currentIndex:number = 0;
   endChat:boolean = false;
 
+  audioToPlay: string | null = null;
 
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private cdr: ChangeDetectorRef) {}
 
 
   // passing the right and wrong counter
@@ -39,13 +52,26 @@ export class ChatCardComponent implements OnInit, AfterViewChecked{
       // console.log('Instructions fetched:', this.instructions);
     });
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  }
+
+  // Scroll to the end
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+    if (this.audioToPlay) {
+      this.playAudio(this.audioToPlay);
+      this.audioToPlay = null;
+    }
+  }
+
   // getting the next chat
   getNext(response?: string):void {
     this.addHistory(response || null);
     if (this.instructions.length > this.currentIndex) {
       this.currInstruction = this.instructions[this.currentIndex];
+      this.currentIndex++;
     }
-    this.currentIndex++;
     if (this.currentIndex == this.instructions.length) {
       this.endChat = true;
       return;
@@ -63,7 +89,6 @@ export class ChatCardComponent implements OnInit, AfterViewChecked{
       // for blossoms
       message = this.currInstruction.conversation || null;
     }
-
     if (this.currInstruction.actor === 'Mediator') {
       css = 'mediator-class';
     } else if (this.currInstruction.actor === 'Jacob') {
@@ -71,29 +96,45 @@ export class ChatCardComponent implements OnInit, AfterViewChecked{
     } else {
       css = 'caleb-class';
     }
-
     this.chatHistory.push({
       person: this.currInstruction.actor,
       response: message,
       cssClass: css
     });
+    // playing the audio
+    if (this.currInstruction.audio) {
+      this.audioToPlay = this.currInstruction.audio;
+      this.playAudioAfterViewUpdate();
+    }
+
   }
+
 
   // checking if the chat belongs to mediator or blossom by comparing their conversation type
   isConversation(conversation: string | Conversation): conversation is Conversation {
     return typeof conversation === 'object';
   }
 
-  // Scroll to the end
-  ngAfterViewChecked(): void {
-    this.scrollToBottom();
+  playAudioAfterViewUpdate(): void {
+    setTimeout(() => {
+      if (this.audioToPlay) {
+        this.playAudio(this.audioToPlay);
+        this.audioToPlay = null;
+      }
+    }, 0);
   }
+
 
   private scrollToBottom(): void {
     const chatArea = document.querySelector('.chat-area') as HTMLElement | null;
     if (chatArea) {
       chatArea.scrollTop = chatArea.scrollHeight;
     }
+  }
+
+  private playAudio(audioUrl: string): void {
+    const audio = new Audio(audioUrl);
+    audio.play();
   }
 
 

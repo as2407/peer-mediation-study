@@ -1,6 +1,7 @@
 export interface Instruction {
   actor: string;
   conversation: Conversation | string;
+  audio: string;
   }
 
 export interface Conversation {

@@ -35,7 +35,8 @@ export class InstructionCardComponent implements OnChanges {
       inputType: '',
       options: [],
       correctAnswer: ''
-    }
+    },
+    audio: ''
   };
 
   @Output() onComplete:EventEmitter<string> = new EventEmitter<string>();
@@ -54,9 +55,16 @@ export class InstructionCardComponent implements OnChanges {
   }
 
   // todo:
-  //  sync of the audio - no next button - Message Queue (call to run the scripts)
+  //  input to the model (audio input) -  just run the audio
+  //  1. implememt audio
+  //  2. model input(model) -> wav
+  //  3. show the output
+  //  4. remove 'next chat' -> timer
   //  IOT device
   //  push the code in new github
+  //  sync of the audio - no next button - Message Queue (call to run the scripts)
+  //  mediator speaks - idle scripts
+  // Doubt - what will be the output -  backend
   // scroll to the end
   // a button to record the audio and end it
   // fix the 'try again' bug
